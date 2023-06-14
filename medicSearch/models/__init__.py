@@ -12,3 +12,7 @@ ROLE_CHOICE = (
 from .Profile import Profile
 from .DayWeek import DayWeek
 from .Speciality import Speciality
+from .State import State
+from .City import City
+from .Neighborhood import Neighborhood
+from .Address import Address
