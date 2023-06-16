@@ -1,7 +1,11 @@
 from django.contrib import admin
 from .models import *
 
-admin.site.register(Profile)
+class ProfileAdmin(admin.ModelAdmin):
+    date_hierarchy = 'created_at'
+
+
+admin.site.register(Profile, ProfileAdmin)
 admin.site.register(State)
 admin.site.register(City)
 admin.site.register(Neighborhood)
