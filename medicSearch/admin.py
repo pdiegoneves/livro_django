@@ -7,9 +7,17 @@ class ProfileAdmin(admin.ModelAdmin):
     list_display = ('user', 'role', 'birthday',)
     list_display = ('user', 'birth',)
 
+    class Media:
+        css = {
+            "all": ("css/custom.css",)
+        }
+        js = ("js/custom.js",)
+
     def birth(self, obj):
         if obj.birthday:
             return obj.birthday.strftime("%d/%m/%Y")
+    
+    birth.empty_value_display = '__/__/____'
 
     empty_value_display = 'Vazio'
     # list_display_links = ('user', 'role')
@@ -31,6 +39,12 @@ class ProfileAdmin(admin.ModelAdmin):
             {'fields': ('specialties', 'addresses')
         }),
     )
+    list_display = ('user', 'specialtiesList', 'addressesList',)
+
+    def specialtiesList(self, obj):
+        return [i.name for i in obj.specialties.all()]
+    def addressesList(self, obj):
+        return [i.name for i in obj.addresses.all()]
 
 admin.site.register(Profile, ProfileAdmin)
 admin.site.register(State)
